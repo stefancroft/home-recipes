@@ -3,7 +3,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 40px;
   max-width: 1200px;
-  margin: 40px auto;
+  margin: 0 15px auto;
 }
 .recipe-list .card {
   background: #fff;
