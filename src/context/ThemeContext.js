@@ -8,6 +8,8 @@ const themeReducer = (state, action) => {
     switch (action.type) {
         case 'CHANGE_COLOR': 
         return { ...state, color: action.payload }
+        case 'CHANGE_MODE' :
+            return { ...state, mode: action.payload}
         default:
             return state
     }
@@ -18,7 +20,8 @@ export function ThemeProvider({ children }) {
 
     //Initial state value
     const [state, dispatch] = useReducer(themeReducer, {
-        color: '#58248c'
+        color: '#58248c',
+        mode: 'dark'
     })
 
     // Can call the changeColor function and pass in a new colour.
@@ -29,13 +32,17 @@ export function ThemeProvider({ children }) {
     // this state object which we get back from the useReducer hook
 
     const changeColor = (color) => {
-        dispatch({type: 'CHANGE_COLOR', payload: color})
+        dispatch({type: 'CHANGE_COLOR', payload: color })
+    }
+
+    const changeMode = (mode) => {
+        dispatch({type: 'CHANGE_MODE', payload: mode })
     }
 
     // Custom logic
 
     return (
-        <ThemeContext.Provider value={{...state, changeColor }}>
+        <ThemeContext.Provider value={{ ...state, changeColor, changeMode }}>
             {children}
         </ThemeContext.Provider>
     )
